@@ -1,8 +1,12 @@
 #### Webpack es6 Sandbox
 https://hacks.mozilla.org/
+
 http://www.2ality.com/2015/02/es6-classes-final.html
+
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla
+
 https://github.com/addyosmani/es6-tools
+
 https://frontendmasters.com/courses/jsnext-es6/
 
 #### To Test
