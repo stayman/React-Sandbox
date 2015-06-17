@@ -1,5 +1,6 @@
 import {join} from 'path';
 import gulp from 'gulp';
+import gutil, {PluginError} from 'gulp-util';
 import {argv} from 'yargs';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
@@ -18,12 +19,12 @@ if(argv.dev) {
 
 const compiler = webpack(entryConfig);
 const logger = (err, stats) => {
-  if(err) throw new Error(err);
+  if(err) throw new gutil.PluginError('webpack-dev-server', err);
 
   if(argv.dev) {
-    console.log('Listening at localhost:3000');
+    gutil.log('[webpack-dev-server]', 'http://localhost:3000/webpack-dev-server/');
   } else {
-    console.log(stats.toString());
+    gutil.log(stats.toString());
   }
 };
 

@@ -1,7 +1,12 @@
 import logger from './sandbox';
 
-logger('something');
+$(() => {
+  $('body').css('backgroundColor', 'goldenrod');
+  //$('body').css('backgroundColor', 'lavenderblush');
+});
 
+
+logger('something');
 
 
 /**
@@ -33,5 +38,3 @@ logger('something');
  *
  * How do we do this more cleanly in es6???
  */
-
-
