@@ -1,8 +1,28 @@
 import logger from './sandbox';
 
 $(() => {
+  let self = this;
+  let $container1 = $('.container-1');
+  let $container2 = $('.container-2');
+  $container1.text('Container 1');
+  $container2.text('Container 2');
   $('body').css('backgroundColor', 'goldenrod');
   //$('body').css('backgroundColor', 'lavenderblush');
+  $container1.on('click', () => {
+    if(this === self) {
+      console.log('maintained scope');
+    } else if (this === $container1[0]) {
+      console.log('scope re-defined');
+    }
+  });
+
+  $container2.on('click', function() {
+    if(this === self) {
+      console.log('maintained scope');
+    } else if (this === $container2[0]) {
+      console.log('scope re-defined');
+    }
+  });
 });
 
 

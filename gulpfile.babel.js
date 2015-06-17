@@ -49,3 +49,7 @@ gulp.task('copy', () => {
   return gulp.src('./src/*.html')
     .pipe(gulp.dest('./dist'))
 });
+
+gulp.task('watch', () => {
+  gulp.watch('./src/*.html', ['copy']);
+});
