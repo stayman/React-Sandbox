@@ -9,6 +9,8 @@ https://github.com/addyosmani/es6-tools
 
 https://frontendmasters.com/courses/jsnext-es6/
 
+https://babeljs.io/docs/learn-es2015/
+
 #### To Test
 `npm i`
 
