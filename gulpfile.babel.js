@@ -19,7 +19,7 @@ if(argv.dev) {
 
 const compiler = webpack(entryConfig);
 const logger = (err, stats) => {
-  if(err) throw new gutil.PluginError('webpack-dev-server', err);
+  if(err) throw new PluginError('webpack-dev-server', err);
 
   if(argv.dev) {
     gutil.log('[webpack-dev-server]', 'http://localhost:3000/webpack-dev-server/');

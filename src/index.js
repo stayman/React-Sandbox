@@ -1,4 +1,5 @@
 import logger from './sandbox';
+import Person from './Person';
 
 $(() => {
   let self = this;
@@ -27,6 +28,9 @@ $(() => {
 
 
 logger('something');
+var dfp = new Person('David', 8000);
+console.log(dfp.walk());
+console.log(dfp.speak());
 
 
 /**
