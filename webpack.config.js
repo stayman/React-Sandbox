@@ -5,7 +5,7 @@ var plugins = [
   new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      'window.jquery': 'jquery'
+      'window.jQuery': 'jquery'
   }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
