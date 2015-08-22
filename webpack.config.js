@@ -13,7 +13,7 @@ var plugins = [
 
 module.exports = {
   entry:  [
-    './src/index.js'
+    './src/index.jsx'
   ],
   output: {
     path: join(__dirname, 'dist'),
@@ -26,9 +26,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel?optional[]=runtime&stage=0'
+        loader: 'babel-loader?optional[]=runtime&stage=0'
       },
       {
         test: /\.json$/,
