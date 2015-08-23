@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import actionTypes from './action-types';
-import reactor from '../reactor';
+import {dispatch} from '../reactor';
 
 
 export const stepTo = function stepTo(step) {
-  reactor.dispatch(actionTypes.STEP_TO, {step});
+  dispatch(actionTypes.STEP_TO, {step});
 };
