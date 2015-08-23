@@ -1,28 +1,23 @@
 import polyfill from 'babel/polyfill';
 import React, {Component, PropTypes} from 'react';
+import reactor from './module/reactor';
 import _ from 'lodash';
 import cx from 'classnames';
+import {provideReactor, nuclearComponent} from 'nuclear-js-react-addons';
+import stepView from './module/step-view';
+import contextDec from './module/nuclearDec';
 
+reactor.registerStores({
+  stepStore: stepView.Stores.stepStore
+});
+
+@provideReactor({
+  Actions: PropTypes.object.isRequired
+})
 class StepView extends Component {
   constructor() {
     super();
     this.state = {step: 1};
-  }
-
-  static childContextTypes = {
-    currentStep: PropTypes.number,
-    goToStep: PropTypes.func
-  }
-
-  getChildContext() {
-    return {
-      currentStep: this.state.step,
-      goToStep: this.goToStep.bind(this)
-    };
-  }
-
-  goToStep(step) {
-    return this.setState({step})
   }
 
   render() {
@@ -43,15 +38,14 @@ class StepView extends Component {
   }
 }
 
-
+@nuclearComponent({
+  currentStep: stepView.Getters.currentStep
+})
 class Step extends Component {
-  static contextTypes = {
-    currentStep: PropTypes.number
-  }
 
   render() {
     let classes = cx({
-      hidden: this.props.step !== this.context.currentStep
+      hidden: this.props.currentStep !== this.props.step
     });
     return (
       <div className={classes}> THIS IS STEP: {this.props.step} </div>
@@ -59,19 +53,33 @@ class Step extends Component {
   }
 }
 
+@nuclearComponent({
+  currentStep: stepView.Getters.currentStep
+})
+@contextDec({
+  Actions: PropTypes.object.isRequired
+})
 class Button extends Component {
-  static contextTypes = {
-    goToStep: PropTypes.func
+  constructor(props) {
+    super(props);
   }
+
+  goToStep(step) {
+    this.props.Actions.stepTo({step});
+  }
+
 
   render() {
     return (
-      <button onClick={this.context.goToStep.bind(null, this.props.toStep)}>{this.props.toStep}</button>
+      <button onClick={this.goToStep.bind(this, this.props.toStep)}>{this.props.toStep}</button>
     )
   }
 }
 
 React.render(
-  <StepView step={1} />,
+  <StepView
+    reactor={reactor}
+    Actions={stepView.Actions}
+  />,
   document.getElementsByClassName('container-1')[0]
 );
