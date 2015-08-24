@@ -26,7 +26,7 @@ class StepView extends Component {
       return <Button toStep={val} key={_.uniqueId('button_')}/>;
     });
     let steps = length.map((val, i) => {
-      return <Step step={val} key={_.uniqueId('step_')}/>;
+      return <hoStep step={val} key={_.uniqueId('step_')}/>;
     });
 
     return (
@@ -38,12 +38,10 @@ class StepView extends Component {
   }
 }
 
-@nuclearComponent({
-  currentStep: stepView.Getters.currentStep
-})
 class Step extends Component {
 
   render() {
+    console.log(this.props);
     let classes = cx({
       hidden: this.props.currentStep !== this.props.step
     });
@@ -75,6 +73,24 @@ class Button extends Component {
     )
   }
 }
+
+let higherOrderComp = function(ReactComponent){
+
+  @nuclearComponent({
+    currentStep: stepView.Getters.currentStep
+  })
+  class HigherOrderComponent extends Component {
+    render() {
+      return (
+        <ReactComponent {...this.props} />
+      )
+    }
+  }
+
+  return HigherOrderComponent;
+}
+
+let hoStep = higherOrderComp(Step);
 
 React.render(
   <StepView
