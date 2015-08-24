@@ -25,6 +25,7 @@ class StepView extends Component {
     let buttons = length.map((val, i) => {
       return <Button toStep={val} key={_.uniqueId('button_')}/>;
     });
+
     let steps = length.map((val, i) => {
       return <hoStep step={val} key={_.uniqueId('step_')}/>;
     });
